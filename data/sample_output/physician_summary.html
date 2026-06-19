@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LabLens Physician Summary</title>
+  <style>
+    :root { --ink:#162033; --muted:#5d667a; --line:#d9dee8; --bg:#f6f8fb; --card:#ffffff; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 28px; font-family: Inter, Segoe UI, Roboto, Arial, sans-serif; color: var(--ink); background: var(--bg); }
+    .page { max-width: 1180px; margin: 0 auto; }
+    header { display:flex; justify-content:space-between; gap:24px; align-items:flex-start; margin-bottom:18px; }
+    h1 { margin:0 0 6px; font-size:32px; letter-spacing:-0.03em; }
+    .subtitle { color:var(--muted); max-width:760px; line-height:1.45; }
+    .notice { border:1px solid var(--line); background:#fff8e8; padding:10px 12px; border-radius:12px; color:#6b4e00; font-size:13px; max-width:300px; }
+    .cards { display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; margin:18px 0; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+    .label { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.08em; }
+    .big { font-size:28px; font-weight:750; margin-top:4px; }
+    .section { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px; margin-top:14px; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+    h2 { margin:0 0 12px; font-size:20px; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th { text-align:left; color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.06em; border-bottom:1px solid var(--line); padding:10px 8px; }
+    td { border-bottom:1px solid #edf0f5; padding:10px 8px; vertical-align:middle; }
+    tr:last-child td { border-bottom:none; }
+    .num { text-align:right; font-variant-numeric: tabular-nums; white-space:nowrap; }
+    .sub { color:var(--muted); font-size:11px; }
+    .pill { display:inline-block; border-radius:999px; padding:4px 8px; font-size:11px; font-weight:700; white-space:nowrap; }
+    .review-first { background:#ffe8e5; color:#9b1c13; }
+    .review { background:#fff1cc; color:#725000; }
+    .monitor-trend { background:#e8f0ff; color:#234f9a; }
+    .routine { background:#e8f7ee; color:#17613a; }
+    .flag.high, .flag.low { color:#a12116; font-weight:700; }
+    .flag.normal { color:#17613a; font-weight:700; }
+    .spark { width:160px; height:38px; overflow:visible; }
+    .spark polyline { fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+    .spark circle { fill:currentColor; }
+    ul { margin:8px 0 0 20px; color:var(--muted); line-height:1.45; }
+    @media print { body { background:white; padding:0; } .section, .card { box-shadow:none; } .page { max-width:none; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div>
+        <h1>LabLens Physician Summary</h1>
+        <div class="subtitle">Synthetic longitudinal lab summary showing latest values, source lab ranges, patient-specific medians/IQRs, descriptive trend flags, and compact sparklines.</div>
+      </div>
+      <div class="notice"><strong>Demo only.</strong> Synthetic data. Not for diagnosis, treatment, or clinical decision support.</div>
+    </header>
+    <section class="cards">
+      <div class="card"><div class="label">Tests summarized</div><div class="big">13</div></div>
+      <div class="card"><div class="label">Abnormal latest flags</div><div class="big">2</div></div>
+      <div class="card"><div class="label">Review first/review</div><div class="big">3</div></div>
+      <div class="card"><div class="label">Monitor trend</div><div class="big">2</div></div>
+    </section>
+    <section class="section">
+      <h2>Clinician-facing longitudinal table</h2>
+      <table>
+        <thead><tr><th>Priority</th><th>Test</th><th class="num">Latest</th><th class="num">Source lab range</th><th class="num">Personal baseline</th><th class="num">Observed range</th><th class="num">Δ median</th><th>Trend</th><th>History</th></tr></thead>
+        <tbody><tr><td><span class="pill review-first">review first</span></td><td><strong>Aspartate aminotransferase</strong><br><span class='sub'>insufficient history</span></td><td class='num'>13 U/L<br><span class='sub'>2026-01-14</span></td><td class='num'>15–41 U/L<br><span class='flag low'>low</span></td><td class='num'>14.5 U/L<br><span class='sub'>mean 14.5 U/L</span></td><td class='num'>13.75–15.25 U/L<br><span class='sub'>min/max 13–16</span></td><td class='num'>-10%<br><span class='sub'>z -0.71</span></td><td>· insufficient data<br><span class='sub'>n=2; abnormal 1</span></td><td><svg viewBox="0 0 160 38" class="spark"><polyline points="0.0,4.0 160.0,34.0" /></svg></td></tr><tr><td><span class="pill review-first">review first</span></td><td><strong>Glucose</strong><br><span class='sub'>insufficient history</span></td><td class='num'>188 mg/dL<br><span class='sub'>2026-02-10</span></td><td class='num'>70–99 mg/dL<br><span class='flag high'>high</span></td><td class='num'>188 mg/dL<br><span class='sub'>mean 188 mg/dL</span></td><td class='num'>188–188 mg/dL<br><span class='sub'>min/max 188–188</span></td><td class='num'>0%<br><span class='sub'>z —</span></td><td>· insufficient data<br><span class='sub'>n=1; abnormal 1</span></td><td><svg viewBox="0 0 160 38" class="spark"><circle cx="80.0" cy="19.0" r="3" /></svg></td></tr><tr><td><span class="pill review">review</span></td><td><strong>Potassium</strong><br><span class='sub'>within observed personal range</span></td><td class='num'>4.1 mmol/L<br><span class='sub'>2026-05-01</span></td><td class='num'>3.5–5.1 mmol/L<br><span class='flag normal'>normal</span></td><td class='num'>3.9 mmol/L<br><span class='sub'>mean 4.2 mmol/L</span></td><td class='num'>3.63–4.47 mmol/L<br><span class='sub'>min/max 3.4–5.6</span></td><td class='num'>+5%<br><span class='sub'>z -0.1</span></td><td>↑ rising<br><span class='sub'>n=4; abnormal 2</span></td><td><svg viewBox="0 0 160 38" class="spark"><polyline points="0.0,29.9 53.3,34.0 106.7,4.0 160.0,24.5" /></svg></td></tr><tr><td><span class="pill monitor-trend">monitor trend</span></td><td><strong>Absolute neutrophil count</strong><br><span class='sub'>within observed personal range</span></td><td class='num'>3.9 10^3/uL<br><span class='sub'>2026-04-20</span></td><td class='num'>1.5–7.8 10^3/uL<br><span class='flag normal'>normal</span></td><td class='num'>3.9 10^3/uL<br><span class='sub'>mean 4.03 10^3/uL</span></td><td class='num'>3.65–4.35 10^3/uL<br><span class='sub'>min/max 3.4–4.8</span></td><td class='num'>0%<br><span class='sub'>z -0.19</span></td><td>↑ rising<br><span class='sub'>n=3; abnormal 0</span></td><td><svg viewBox="0 0 160 38" class="spark"><polyline points="0.0,34.0 80.0,4.0 160.0,23.3" /></svg></td></tr><tr><td><span class="pill monitor-trend">monitor trend</span></td><td><strong>Hematocrit</strong><br><span class='sub'>below personal baseline</span></td><td class='num'>37.9 %<br><span class='sub'>2026-04-20</span></td><td class='num'>35–45 %<br><span class='flag normal'>normal</span></td><td class='num'>38.75 %<br><span class='sub'>mean 38.8 %</span></td><td class='num'>38.27–39.28 %<br><span class='sub'>min/max 37.9–39.8</span></td><td class='num'>-2%<br><span class='sub'>z -1.09</span></td><td>→ stable<br><span class='sub'>n=4; abnormal 0</span></td><td><svg viewBox="0 0 160 38" class="spark"><polyline points="0.0,26.1 53.3,15.1 106.7,4.0 160.0,34.0" /></svg></td></tr><tr><td><span class="pill routine">routine</span></td><td><strong>Alanine aminotransferase</strong><br><span class='sub'>insufficient history</span></td><td class='num'>12 U/L<br><span class='sub'>2026-01-14</span></td><td class='num'>7–52 U/L<br><span class='flag normal'>normal</span></td><td class='num'>13 U/L<br><span class='sub'>mean 13 U/L</span></td><td class='num'>12.5–13.5 U/L<br><span class='sub'>min/max 12–14</span></td><td class='num'>-8%<br><span class='sub'>z -0.71</span></td><td>· insufficient data<br><span class='sub'>n=2; abnormal 0</span></td><td><svg viewBox="0 0 160 38" class="spark"><polyline points="0.0,4.0 160.0,34.0" /></svg></td></tr><tr><td><span class="pill routine">routine</span></td><td><strong>C-reactive protein</strong><br><span class='sub'>insufficient history</span></td><td class='num'>5.4 mg/L<br><span class='sub'>2026-04-20</span></td><td class='num'>&lt;8 mg/L<br><span class='flag normal'>normal</span></td><td class='num'>8.3 mg/L<br><span class='sub'>mean 8.3 mg/L</span></td><td class='num'>6.85–9.75 mg/L<br><span class='sub'>min/max 5.4–11.2</span></td><td class='num'>-35%<br><span class='sub'>z -0.71</span></td><td>· insufficient data<br><span class='sub'>n=2; abnormal 1</span></td><td><svg viewBox="0 0 160 38" class="spark"><polyline points="0.0,4.0 160.0,34.0" /></svg></td></tr><tr><td><span class="pill routine">routine</span></td><td><strong>Creatinine</strong><br><span class='sub'>within observed personal range</span></td><td class='num'>0.8 mg/dL<br><span class='sub'>2026-05-01</span></td><td class='num'>0.44–1.03 mg/dL<br><span class='flag normal'>normal</span></td><td class='num'>0.81 mg/dL<br><span class='sub'>mean 0.81 mg/dL</span></td><td class='num'>0.79–0.82 mg/dL<br><span class='sub'>min/max 0.77–0.86</span></td><td class='num'>-1%<br><span class='sub'>z -0.27</span></td><td>→ stable<br><span class='sub'>n=4; abnormal 0</span></td><td><svg viewBox="0 0 160 38" class="spark"><polyline points="0.0,34.0 53.3,20.7 106.7,4.0 160.0,24.0" /></svg></td></tr><tr><td><span class="pill routine">routine</span></td><td><strong>Hemoglobin</strong><br><span class='sub'>within observed personal range</span></td><td class='num'>13 g/dL<br><span class='sub'>2026-05-01</span></td><td class='num'>11–15.1 g/dL<br><span class='flag normal'>normal</span></td><td class='num'>13 g/dL<br><span class='sub'>mean 13.04 g/dL</span></td><td class='num'>12.9–13.1 g/dL<br><span class='sub'>min/max 12.8–13.4</span></td><td class='num'>0%<br><span class='sub'>z -0.17</span></td><td>→ stable<br><span class='sub'>n=5; abnormal 0</span></td><td><svg viewBox="0 0 160 38" class="spark"><polyline points="0.0,29.0 40.0,19.0 80.0,4.0 120.0,34.0 160.0,24.0" /></svg></td></tr><tr><td><span class="pill routine">routine</span></td><td><strong>Platelet count</strong><br><span class='sub'>within observed personal range</span></td><td class='num'>342 10^3/uL<br><span class='sub'>2026-04-20</span></td><td class='num'>140–400 10^3/uL<br><span class='flag normal'>normal</span></td><td class='num'>330 10^3/uL<br><span class='sub'>mean 329 10^3/uL</span></td><td class='num'>313.75–345.25 10^3/uL<br><span class='sub'>min/max 301–355</span></td><td class='num'>+4%<br><span class='sub'>z 0.54</span></td><td>→ stable<br><span class='sub'>n=4; abnormal 0</span></td><td><svg viewBox="0 0 160 38" class="spark"><polyline points="0.0,24.6 53.3,4.0 106.7,34.0 160.0,11.2" /></svg></td></tr><tr><td><span class="pill routine">routine</span></td><td><strong>Red blood cell count</strong><br><span class='sub'>within observed personal range</span></td><td class='num'>4.45 M/uL<br><span class='sub'>2026-05-01</span></td><td class='num'>3.7–5.1 M/uL<br><span class='flag normal'>normal</span></td><td class='num'>4.41 M/uL<br><span class='sub'>mean 4.41 M/uL</span></td><td class='num'>4.38–4.45 M/uL<br><span class='sub'>min/max 4.32–4.5</span></td><td class='num'>+1%<br><span class='sub'>z 0.56</span></td><td>→ stable<br><span class='sub'>n=5; abnormal 0</span></td><td><svg viewBox="0 0 160 38" class="spark"><polyline points="0.0,34.0 40.0,19.0 80.0,4.0 120.0,24.0 160.0,12.3" /></svg></td></tr><tr><td><span class="pill routine">routine</span></td><td><strong>Sodium</strong><br><span class='sub'>within observed personal range</span></td><td class='num'>138 mmol/L<br><span class='sub'>2026-05-01</span></td><td class='num'>136–145 mmol/L<br><span class='flag normal'>normal</span></td><td class='num'>138 mmol/L<br><span class='sub'>mean 138 mmol/L</span></td><td class='num'>137.75–138.25 mmol/L<br><span class='sub'>min/max 137–139</span></td><td class='num'>0%<br><span class='sub'>z 0</span></td><td>→ stable<br><span class='sub'>n=4; abnormal 0</span></td><td><svg viewBox="0 0 160 38" class="spark"><polyline points="0.0,4.0 53.3,19.0 106.7,34.0 160.0,19.0" /></svg></td></tr><tr><td><span class="pill routine">routine</span></td><td><strong>White blood cell count</strong><br><span class='sub'>within observed personal range</span></td><td class='num'>6 K/uL<br><span class='sub'>2026-05-01</span></td><td class='num'>4–11 K/uL<br><span class='flag normal'>normal</span></td><td class='num'>6.1 K/uL<br><span class='sub'>mean 6.3 K/uL</span></td><td class='num'>6–6.4 K/uL<br><span class='sub'>min/max 5.8–7.2</span></td><td class='num'>-2%<br><span class='sub'>z -0.55</span></td><td>→ stable<br><span class='sub'>n=5; abnormal 0</span></td><td><svg viewBox="0 0 160 38" class="spark"><polyline points="0.0,34.0 40.0,4.0 80.0,21.1 120.0,27.6 160.0,29.7" /></svg></td></tr></tbody>
+      </table>
+    </section>
+    <section class="section">
+      <h2>Qualitative results <span class="sub">(1 flagged)</span></h2>
+      <table>
+        <thead><tr><th>Priority</th><th>Test</th><th class="num">Result</th></tr></thead>
+        <tbody><tr><td><span class="pill routine">routine</span></td><td><strong>Influenza Virus Type A</strong><br><span class='sub'>RESPIRATORY PATHOGEN PANEL</span></td><td class='num'>Not Detected<br><span class='sub'>2026-04-20</span></td></tr><tr><td><span class="pill review-first">review</span></td><td><strong>Respiratory Syncytial Virus</strong><br><span class='sub'>RESPIRATORY PATHOGEN PANEL</span></td><td class='num'>DETECTED<br><span class='sub'>2026-04-20</span></td></tr><tr><td><span class="pill routine">routine</span></td><td><strong>Leukocyte Esterase</strong><br><span class='sub'>URINALYSIS</span></td><td class='num'>Trace<br><span class='sub'>2026-02-10</span></td></tr></tbody>
+      </table>
+    </section>
+    <section class="section">
+      <h2>Interpretation notes</h2>
+      <ul>
+        <li>LabLens preserves the performing laboratory's reference interval from the source document instead of replacing it with a universal range.</li>
+        <li>Personal baseline uses median and IQR because they are less sensitive to outliers than a simple average.</li>
+        <li>Priority flags are descriptive signals for review, not medical advice.</li>
+        <li>Rows with ambiguous extraction, unmapped aliases, or unknown units should remain in a human review queue before use.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

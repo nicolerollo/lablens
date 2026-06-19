@@ -1,0 +1,20 @@
+# Synthetic extracted text modeled after a regional-hospital-style patient portal lab PDF export.
+# No real patient data. This is a third, distinct layout (banner header + key=value rows) used to
+# show the source-parser registry generalizes beyond two formats.
+
+=== CBC WITH DIFFERENTIAL === Date: 2026-05-01
+WBC=6.0 K/uL (range 4.0-11.0)
+RBC=4.45 M/uL (range 3.70-5.10)
+Hemoglobin=13.0 g/dL (range 11.0-15.1)
+
+=== COMPREHENSIVE METABOLIC PANEL === Date: 2026-05-01
+Sodium=138 mmol/L (range 136-145)
+Potassium=4.1 mmol/L (range 3.5-5.1)
+Creatinine=0.80 mg/dL (range 0.44-1.03)
+Magnesium=2.0 mg/dL (range 1.7-2.2)
+
+# Same draw as the academic-medical-center-style export's 2026-02-10 CMP -- some referral labs report
+# back to more than one downstream system, which is exactly the kind of cross-source duplicate
+# LabLens's review queue is meant to catch instead of silently double-counting in analytics.
+=== COMPREHENSIVE METABOLIC PANEL === Date: 2026-02-10
+Sodium=137 mmol/L (range 136-145)

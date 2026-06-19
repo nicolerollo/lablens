@@ -1,0 +1,15 @@
+services:
+  lablens-postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: lablens
+      POSTGRES_USER: lablens
+      POSTGRES_PASSWORD: lablens_dev_only
+    ports:
+      - "5432:5432"
+    volumes:
+      - lablens_pg_data:/var/lib/postgresql/data
+      - ./sql/schema_postgres.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+
+volumes:
+  lablens_pg_data:

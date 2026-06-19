@@ -1,0 +1,29 @@
+# Synthetic extracted text modeled after what real PDF text extraction actually produces from a
+# multi-page academic-medical-center-style export: repeated letterhead, a row wrapped across a line
+# break because a column got too narrow, a "Performed At" footer, and a panel that continues
+# after a page break under a second copy of its own header. No real patient data.
+ACADEMIC MEDICAL CENTER - LAB RESULTS EXPORT
+Patient Portal PDF Export (text extraction)
+Performed At: Academic Medical Center Main Campus Lab
+
+Panel: CBC WITH DIFFERENTIAL | Collected: 2026-06-01
+  WBC ..................
+  6.4 K/uL Ref: 4.0-11.0
+  RBC .................. 4.50 M/uL Ref: 3.70-5.10
+  Hemoglobin ...........
+  13.2 g/dL Ref: 11.0-15.1
+
+Page 2 of 3
+
+ACADEMIC MEDICAL CENTER - LAB RESULTS EXPORT
+Patient Portal PDF Export (text extraction)
+
+Panel: CBC WITH DIFFERENTIAL | Collected: 2026-06-01
+  Platelet Count ........ 310 K/uL Ref: 150-400
+
+Performed At: Academic Medical Center Main Campus Lab
+
+Panel: RESPIRATORY PATHOGEN PANEL | Collected: 2026-06-01
+  Influenza Virus Type A .... DETECTED Ref: Negative
+
+Page 3 of 3

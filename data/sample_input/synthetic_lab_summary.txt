@@ -1,0 +1,50 @@
+# Synthetic extracted text modeled after patient portal health-summary PDFs.
+# No real patient data.
+
+CBC WITH DIFFERENTIAL - Final result (2025-09-02 08:10 AM CDT)
+WBC | 5.8 | 4.0 - 11.0 K/uL | 4
+RBC | 4.32 | 3.70 - 5.10 M/uL | 4
+Hemoglobin | 12.9 | 11.0 - 15.1 g/dL | 4
+Hematocrit | 38.4 | 33.1 - 44.5 % | 4
+Platelet Count | 318 | 150 - 400 K/uL | 5
+Abs Neutrophils | 3.4 | 1.3 - 7.5 K/uL | 5
+
+COMPREHENSIVE METABOLIC PANEL - Final result (2025-09-02 08:10 AM CDT)
+Sodium | 139 | 136 - 145 mmol/L | 6
+Potassium | 3.7 | 3.5 - 5.1 mmol/L | 6
+Creatinine | 0.77 | 0.44 - 1.03 mg/dL | 6
+AST | 16 | 15 - 41 U/L | 6
+ALT | 14 | 7 - 52 U/L | 6
+
+CBC WITH DIFFERENTIAL - Final result (2026-01-14 09:22 AM CDT)
+WBC | 7.2 | 4.0 - 11.0 K/uL | 10
+RBC | 4.41 | 3.70 - 5.10 M/uL | 10
+Hemoglobin | 13.1 | 11.0 - 15.1 g/dL | 10
+Hematocrit | 39.1 | 33.1 - 44.5 % | 10
+Platelet Count | 355 | 150 - 400 K/uL | 11
+Abs Neutrophils | 4.8 | 1.3 - 7.5 K/uL | 11
+
+COMPREHENSIVE METABOLIC PANEL - Final result (2026-01-14 09:22 AM CDT)
+Sodium | 138 | 136 - 145 mmol/L | 12
+Potassium | 3.4 | 3.5 - 5.1 mmol/L | 12
+Creatinine | 0.81 | 0.44 - 1.03 mg/dL | 12
+AST | 13 | 15 - 41 U/L | 12
+ALT | 12 | 7 - 52 U/L | 12
+
+C-REACTIVE PROTEIN - Final result (2026-01-14 09:22 AM CDT)
+CRP | 11.2 | <8.0 mg/L | 13
+
+CBC WITH DIFFERENTIAL - Final result (2026-04-20 10:05 AM CDT)
+WBC | 6.1 | 3.8 - 10.8 10^3/uL | 18
+RBC | 4.38 | 3.80 - 5.10 10^6/uL | 18
+Hemoglobin | 12.8 | 11.7 - 15.5 g/dL | 18
+Hematocrit | 37.9 | 35.0 - 45.0 % | 18
+Platelets | 342 | 140 - 400 10^3/uL | 19
+Neutrophils Absolute | 3.9 | 1.5 - 7.8 10^3/uL | 19
+
+C-REACTIVE PROTEIN - Final result (2026-04-20 10:05 AM CDT)
+C-Reactive Protein | 5.4 | <8.0 mg/L | 20
+
+RESPIRATORY PATHOGEN PANEL - Final result (2026-04-20 10:05 AM CDT)
+Influenza Virus Type A | Not Detected | Not Detected | 21
+Respiratory Syncytial Virus | DETECTED | Not Detected | 21

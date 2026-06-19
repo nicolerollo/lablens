@@ -1,0 +1,19 @@
+# Synthetic extracted text modeled after an academic-medical-center-style patient portal lab PDF export.
+# No real patient data. Layout intentionally differs from the military-health-style export to demonstrate
+# source-specific parsing feeding the same normalized pipeline.
+
+Panel: CBC WITH DIFFERENTIAL | Collected: 2026-02-10
+  WBC .................. 6.4 K/uL Ref: 4.0-11.0
+  RBC .................. 4.50 M/uL Ref: 3.70-5.10
+  Hemoglobin ........... 13.4 g/dL Ref: 11.0-15.1
+  Hematocrit ........... 39.8 % Ref: 33.1-44.5
+  Platelet Count ........ 301 K/uL Ref: 150-400
+
+Panel: COMPREHENSIVE METABOLIC PANEL | Collected: 2026-02-10
+  Sodium ................ 137 mmol/L Ref: 136-145
+  Potassium .............. 5.6 mmol/L Ref: 3.5-5.1
+  Creatinine ............ 0.86 mg/dL Ref: 0.44-1.03
+  Glucose, Fasting ...... 188 mg/dL Ref: 70-99
+
+Panel: URINALYSIS | Collected: 2026-02-10
+  Leukocyte Esterase .... Trace Ref: Negative
