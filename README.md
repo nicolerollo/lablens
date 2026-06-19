@@ -9,7 +9,7 @@
 ## The problem
 
 Healthcare lab records are fragmented across systems: a military health system, an academic
-medical center, a regional hospital — each one exporting a patient's labs as its own PDF,
+medical center, a regional hospital. Each one exporting a patient's labs as its own PDF,
 formatted for a human to skim, not for software to analyze. The same patient's potassium history
 might live in three different PDFs across three different layouts, with no shared structure tying
 them together.
@@ -20,10 +20,9 @@ multiple source systems and turn it into one clean, queryable, trendable patient
 
 ## 📊 The database layer, up front
 
-The relational database is the core of this project, not an afterthought. Full documentation —
+The relational database is the core of this project. Full documentation —
 **ERD, data dictionary, normalization rationale, provenance model, and example queries run against
-real generated output** — lives in **[`docs/database.md`](docs/database.md)**. Read that first if
-you're evaluating this as a database-design portfolio piece.
+real generated output** Lives in **[`docs/database.md`](docs/database.md)**. 
 
 ```mermaid
 erDiagram
@@ -39,7 +38,7 @@ erDiagram
 (This is the abridged view — the full ERD with every table and column is in
 [`docs/database.md`](docs/database.md).)
 
-## What LabLens does — and doesn't do
+## What LabLens does and doesn't do
 
 LabLens picks up **after** PDF text/table extraction, not before:
 
@@ -58,10 +57,10 @@ LabLens picks up **after** PDF text/table extraction, not before:
 - ✅ Computes personal-baseline analytics (median, IQR, trend, z-score) across *all* source systems combined
 - ✅ Generates a physician-friendly longitudinal summary, flagged for review priority — not diagnosis
 - ✅ Ships a small CLI (`lablens parse|ingest|report|export-review|demo`), not just one demo script
-- ❌ Does **not** implement OCR or PDF parsing itself — assumes tools like `pdfplumber`, `PyMuPDF`,
+- ❌ Does **not** implement OCR or PDF parsing itself; assumes tools like `pdfplumber`, `PyMuPDF`,
   Camelot, or Tabula already did that upstream
 - ❌ Is **not** a diagnostic tool, clinical decision support system, or medical device
-- ❌ Never touches real patient data — every sample input is synthetic and de-identified by design
+- ❌ Never touches real patient data. Every sample input is synthetic and de-identified by design
 
 ## Pipeline
 
@@ -140,7 +139,7 @@ rather than double-counting (see [`docs/database.md`](docs/database.md#example-q
 }
 ```
 
-`canonical_test_name` starts out `null` straight out of the parser/normalizer — it's filled in
+`canonical_test_name` starts out `null` straight out of the parser/normalizer. It's filled in
 only once `insert_results()` resolves it against `lab_test_aliases` in the database (see
 [`docs/database.md`](docs/database.md#alias-mapping-is-database-driven)). The JSON above reflects
 a result *after* that DB round-trip, which is what `lablens-demo` writes.
@@ -154,7 +153,7 @@ pip install -e ".[dev]"
 pytest
 ```
 
-Run the demo pipeline — this auto-detects and parses **all three** synthetic source files, stores
+Run the demo pipeline. This auto-detects and parses **all three** synthetic source files, stores
 everything in one patient record, and writes the reports:
 
 ```bash
@@ -174,7 +173,7 @@ Wrote data/sample_output/physician_summary.html
 Wrote data/sample_output/review_queue.csv
 ```
 
-(Down from 13 review-queue rows to 5 after the unit-normalization improvements below — the
+(Down from 13 review-queue rows to 5 after the unit-normalization improvements below. The
 remaining 5 are genuinely unmapped tests and one real cross-source duplicate, not unit-spelling noise.)
 
 Open `data/sample_output/physician_summary.html` in a browser, browse
@@ -263,7 +262,7 @@ lablens/
 ## Database design
 
 LabLens uses a normalized SQLite schema (`sql/schema.sql`) covering patients, source documents,
-extraction runs, panels, canonical lab tests, aliases, units, results, and a human review queue —
+extraction runs, panels, canonical lab tests, aliases, units, results, and a human review queue;
 not a single flat table. Key choices:
 
 - raw values and normalized values are stored side by side, never one in place of the other
