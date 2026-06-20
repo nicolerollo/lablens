@@ -181,7 +181,7 @@ file directly with [`sql/example_queries.sql`](sql/example_queries.sql).
 > **Note on `data/sample_output/`:** `physician_summary.md`, `physician_summary.html`,
 > `normalized_results.json`, and `review_queue.csv` are committed as worked examples you can read
 > on GitHub without running anything. `lablens_demo.sqlite` is **not** committed (`*.sqlite` is
-> gitignored) — it's a regenerable binary artifact; run `lablens-demo` or `lablens ingest` to
+> gitignored). It's a regenerable binary artifact; run `lablens-demo` or `lablens ingest` to
 > produce it locally.
 
 ## CLI
@@ -284,7 +284,7 @@ rationale, and example queries with real output**. Narrative
 companions: [`docs/phase2_database.md`](docs/phase2_database.md) and
 [`docs/data_model.md`](docs/data_model.md).
 
-## Portfolio framing
+## Project framing
 
 This project is designed to show:
 
