@@ -14,13 +14,11 @@ formatted for a human to skim, not for software to analyze. The same patient's p
 might live in three different PDFs across three different layouts, with no shared structure tying
 them together.
 
-LabLens is **not just a lab tracker**. It's a clinical PDF extraction, normalization, database,
-and physician-reporting pipeline that demonstrates how to take *already-extracted* text from
-multiple source systems and turn it into one clean, queryable, trendable patient record.
+LabLens is a clinical PDF extraction, normalization, database, and physician-reporting pipeline that demonstrates how to take *already-extracted* text from multiple source systems and turn it into one clean, queryable, trendable patient record.
 
 ## 📊 The database layer, up front
 
-The relational database is the core of this project. Full documentation —
+The relational database is the core of this project. Full documentation:
 **ERD, data dictionary, normalization rationale, provenance model, and example queries run against
 real generated output** Lives in **[`docs/database.md`](docs/database.md)**. 
 
@@ -35,10 +33,10 @@ erDiagram
     LAB_RESULTS ||--o{ REVIEW_QUEUE : "may need"
 ```
 
-(This is the abridged view — the full ERD with every table and column is in
+(This is the abridged view. The full ERD with every table and column is in:
 [`docs/database.md`](docs/database.md).)
 
-## What LabLens does and doesn't do
+## What LabLens does and does not do
 
 LabLens picks up **after** PDF text/table extraction, not before:
 
@@ -46,16 +44,16 @@ LabLens picks up **after** PDF text/table extraction, not before:
 - ✅ Tolerates messy real-world extraction artifacts: line-wrapped rows, repeated letterhead,
   page-break footers, and panels that continue under a repeated header
 - ✅ Preserves the raw extracted value, unit, and reference range alongside every normalized field
-- ✅ Resolves raw test names to canonical concepts **entirely from the `lab_test_aliases` table**
-  — there is no Python alias dictionary; adding a mapping is one `INSERT`, not a code change —
+- ✅ Resolves raw test names to canonical concepts **entirely from the `lab_test_aliases` table**.
+  There is no Python alias dictionary; adding a mapping is one `INSERT`, not a code change,
   and prefers a source-specific alias over a generic one when both exist for the same raw name
 - ✅ Normalizes common CBC unit variants (`10^3/uL`, `x10^6/uL`, `M/µL`, case differences, ...)
   instead of flagging every spelling as ambiguous
-- ✅ Tracks full provenance — patient → source document → extraction run → panel → result — on every row
+- ✅ Tracks full provenance — patient → source document → extraction run → panel → result (on every row)
 - ✅ Flags unmapped tests, low-confidence rows, and **cross-source duplicate results** into a human
   review queue (exportable to CSV) instead of silently trusting or dropping them
 - ✅ Computes personal-baseline analytics (median, IQR, trend, z-score) across *all* source systems combined
-- ✅ Generates a physician-friendly longitudinal summary, flagged for review priority — not diagnosis
+- ✅ Generates a physician-friendly longitudinal summary, flagged for review priority (not diagnosis)
 - ✅ Ships a small CLI (`lablens parse|ingest|report|export-review|demo`), not just one demo script
 - ❌ Does **not** implement OCR or PDF parsing itself; assumes tools like `pdfplumber`, `PyMuPDF`,
   Camelot, or Tabula already did that upstream
@@ -115,7 +113,7 @@ data/sample_input/regional_hospital_style_lab_summary.txt   regional-hospital-st
 
 All three feed the same normalization → database → analytics → report pipeline. The result: a
 single Potassium trend spanning a military-health-style draw in January, an academic-medical-center-style draw in
-February, and a regional-hospital-style draw in May — merged into one continuous, reviewable
+February, and a regional-hospital-style draw in May, All merged into one continuous, reviewable
 history instead of three disconnected PDFs a clinician would have to compare by eye. The sample
 data also includes a deliberately duplicated Sodium result reported by two different systems for
 the same date, which the database flags as `possible_duplicate` and excludes from baseline math
@@ -219,7 +217,7 @@ sample files, to reflect what real PDF text extraction actually tends to produce
 and unit wrapped onto the next line because a column was too narrow, the same letterhead repeated
 on every page, a `Performed At:` footer, a panel that continues under a second copy of its own
 header after a page break, and one qualitative (non-numeric) result. `academic_medical_center_parser.py` recovers
-from all of it — see [`docs/phase1_parsing.md`](docs/phase1_parsing.md#handling-messy-extraction-artifacts)
+from all of it. See [`docs/phase1_parsing.md`](docs/phase1_parsing.md#handling-messy-extraction-artifacts)
 and `tests/test_messy_academic_medical_center_fixture.py`.
 
 ## Project structure
@@ -268,7 +266,7 @@ not a single flat table. Key choices:
 - raw values and normalized values are stored side by side, never one in place of the other
 - lab-specific reference ranges are preserved per result, not replaced with a universal range
 - **alias resolution is entirely database-driven**: `lab_test_aliases` is the only place `WBC`,
-  `White Blood Cell Count`, and `Leukocytes` map to one canonical test — there is no parallel
+  `White Blood Cell Count`, and `Leukocytes` map to one canonical test. There is no parallel
   Python dictionary to keep in sync, and `database.resolve_canonical_test()` is the single
   function that does the lookup
 - **unit resolution is case-insensitive** and the seeded `units` table covers realistic CBC
@@ -282,7 +280,7 @@ not a single flat table. Key choices:
   dropped
 
 **See [`docs/database.md`](docs/database.md) for the full ERD, data dictionary, normalization
-rationale, and example queries with real output** — that's the canonical reference. Narrative
+rationale, and example queries with real output**. Narrative
 companions: [`docs/phase2_database.md`](docs/phase2_database.md) and
 [`docs/data_model.md`](docs/data_model.md).
 
@@ -312,7 +310,7 @@ This project is designed to show:
 - Each source system needs its own small parser module. Adding a new system means writing a new
   parser and detector, not configuring an existing one.
 - Format auto-detection (`sources.detect_source_system`) is a simple header-pattern match, not a
-  robust classifier — ambiguous or unrecognized input returns `None` rather than guessing.
+  robust classifier. Ambiguous or unrecognized input returns `None` rather than guessing.
 - The academic-medical-center-style parser's line-wrap recovery is a one-line lookahead (merge with the very next
   line and retry the row pattern); it would not recover a row wrapped across three or more lines.
 - The alias and canonical-test list is intentionally small and seeded for the synthetic demo only.
@@ -325,10 +323,10 @@ This project is designed to show:
 - Qualitative interpretation (`DETECTED` / `POSITIVE` / etc.) uses a fixed keyword list and marks
   unrecognized phrasing as `qualitative_indeterminate` rather than guessing.
 - `sql/schema_postgres.sql` and `docker-compose.yml` prove the schema is portable, but
-  `database.py` still talks to SQLite directly — see "PostgreSQL migration path" in
+  `database.py` still talks to SQLite directly. See "PostgreSQL migration path" in
   [`docs/database.md`](docs/database.md).
 - `lablens apply-review` (re-importing human corrections from a reviewed CSV back into the
-  database) does not exist yet — `export-review` is one-directional today. See Future extensions.
+  database) does not exist yet; `export-review` is one-directional today. See Future extensions.
 
 ## Future extensions
 
